@@ -1,75 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ASF Quiz — Quiz do Dia de Surf</title>
-<meta name="description" content="Quiz diário de conhecimento do surf: 5 perguntas, +15 XP e streak. Satélite do app ASF.">
-<style>:root{--p:#00a8cc;--pd:#0e2439;--g:#f4d03f}*{box-sizing:border-box;margin:0}body{font-family:system-ui,sans-serif;background:#f6fbfd;color:var(--pd)}nav{background:var(--pd);padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0}nav a{color:#fff;text-decoration:none;font-size:12px;font-weight:600;padding:5px 10px;border-radius:20px;background:rgba(255,255,255,.08)}nav a:hover{background:var(--p)}nav a.hub{background:var(--g);color:var(--pd)}header{padding:40px 20px;text-align:center;background:linear-gradient(135deg,#f4d03f22,#00a8cc18)}h1{font-size:26px}main{max-width:560px;margin:24px auto;padding:0 16px}.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.07)}.streak{display:inline-block;background:#f4d03f33;border:1px solid #f4d03f66;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600;color:#d4a017;margin-bottom:12px}.q{font-size:16px;font-weight:600;margin:10px 0}.opt{display:block;width:100%;text-align:left;padding:12px 14px;margin:6px 0;background:#fff;border:1.5px solid #dde;border-radius:10px;cursor:pointer;font-size:14px}.opt:hover{border-color:var(--p)}.opt.correct{background:#27ae6018;border-color:#27ae60;color:#27ae60}.opt.wrong{background:#e74c3c18;border-color:#e74c3c;color:#e74c3c}.res{display:none;margin-top:14px;padding:14px;border-radius:10px;text-align:center;font-weight:600}footer{text-align:center;padding:26px;font-size:12px;color:#678}button.next{margin-top:10px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border:none;border-radius:10px;padding:12px;width:100%;font-weight:600;cursor:pointer;display:none}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASF Quiz — Quiz diário de conhecimento do surf</title>
+<meta name="description" content="ASF Quiz: quiz diário de conhecimento do surf com XP e streak. Parte do ecossistema do app ASF.">
+<link rel="canonical" href="https://acarolmourad-commits.github.io/asf-quiz/">
+<style>body{font-family:system-ui,sans-serif;margin:0;background:#ecfdf5;color:#064e3b}header{background:#059669;color:#fff;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#d1fae5}nav a{background:#fff;border:1px solid #6ee7b7;border-radius:9999px;padding:.4rem .9rem;color:#047857;text-decoration:none}main{max-width:800px;margin:2rem auto;padding:0 1rem}section{background:#fff;border-radius:12px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}button{background:#059669;color:#fff;border:0;border-radius:8px;padding:.8rem 1.5rem;font-size:1rem;cursor:pointer}footer{text-align:center;padding:2rem;color:#64748b}#result{font-weight:bold;margin-top:1rem}</style>
 </head>
 <body>
+<header><h1>ASF Quiz 🧠</h1><p>Quiz diário de conhecimento do surf — ganhe XP e mantenha seu streak!</p></header>
 <nav>
-<a class="hub" href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ ASF App</a>
-<a href="https://acarolmourad-commits.github.io/asf-previsao/">🌊 Previsão</a>
-<a href="https://acarolmourad-commits.github.io/asf-praias/">🏖️ Praias</a>
-<a href="https://acarolmourad-commits.github.io/asf-treino/">💪 Treino</a>
-<a href="https://acarolmourad-commits.github.io/asf-eventos/">📅 Eventos</a>
-<a href="https://acarolmourad-commits.github.io/asf-glossario/">📖 Glossário</a>
-<a href="https://acarolmourad-commits.github.io/asf-comunidade/">💜 Comunidade</a>
-<a href="https://acarolmourad-commits.github.io/asf-seguranca/">🛟 Segurança</a>
-<a href="https://acarolmourad-commits.github.io/asf-equipamento/">🏄 Equipamento</a>
+<a href="https://acarolmourad-commits.github.io/asf-app/">App ASF</a>
+<a href="https://acarolmourad-commits.github.io/asf-praias/">Praias</a>
+<a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsão</a>
+<a href="https://acarolmourad-commits.github.io/asf-treino/">Treino</a>
+<a href="https://acarolmourad-commits.github.io/asf-eventos/">Eventos</a>
+<a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossário</a>
+<a href="https://acarolmourad-commits.github.io/asf-comunidade/">Comunidade</a>
+<a href="https://acarolmourad-commits.github.io/asf-seguranca/">Segurança</a>
+<a href="https://acarolmourad-commits.github.io/asf-equipamento/">Equipamento</a>
 </nav>
-<header><h1>🧠 ASF Quiz do Dia</h1><p>5 perguntas — responda para ganhar +15 XP 🎯</p></header>
-<main><div class="card">
-<span class="streak">🔥 <span id="streak">0</span> seguidos</span>
-<p style="font-size:12px;font-weight:600;color:var(--p)" id="prog">Pergunta 1 de 5</p>
-<p class="q" id="q"></p>
-<div id="opts"></div>
-<div class="res" id="res"></div>
-<button class="next" id="next" onclick="nextQ()">Próxima ➜</button>
-</div></main>
-<footer>Parte da constelação ASF • <a href="https://acarolmourad-commits.github.io/asf-app/">Voltar ao app principal</a></footer>
+<main>
+<section>
+<h2>🌊 Pergunta do dia</h2>
+<p id="question">Carregando...</p>
+<div id="answers"></div>
+<p id="result"></p>
+</section>
+<section><h2>📚 Estude com a rede ASF</h2><p>Errou? Revise no <a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossário</a>, aprenda sobre <a href="https://acarolmourad-commits.github.io/asf-seguranca/">Segurança no mar</a> e <a href="https://acarolmourad-commits.github.io/asf-equipamento/">Equipamento</a>, e volte amanhã para manter o streak!</p></section>
+</main>
+<footer>ASF Quiz — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/">app ASF</a> · Associação de Surf Feminino</footer>
 <script>
-const QS=[
-{q:'Qual é a origem do surf?',o:['Polinésia','Brasil','Austrália','Califórnia'],a:0},
-{q:'O que é uma corrente de retorno?',o:['Vento forte','Canal de água que volta ao mar','Onda gigante','Maré cheia'],a:1},
-{q:'Quem tem prioridade na onda?',o:['Quem grita primeiro','Quem tem prancha maior','Quem está mais perto da arrebentação','Quem chegou por último'],a:2},
-{q:'Qual o equipamento essencial de segurança?',o:['Leash (cordinha)','Óculos escuros','Boné','Cera colorida'],a:0},
-{q:'O que fazer se pego por uma corrente?',o:['Nadar contra ela','Entrar em pânico','Nadar paralelo à praia','Mergulhar fundo'],a:2}
+const questions=[
+{q:"O que é um 'drop' no surf?",a:["Roubar a onda de quem tem prioridade","Cair da prancha","Tipo de parafina","Remada longa"],c:0},
+{q:"Qual espessura de wetsuit é ideal para o inverno do litoral norte de SP?",a:["1mm","3/2mm","5mm","Short john"],c:1},
+{q:"Ao ser pega por uma corrente de retorno, você deve:",a:["Nadar contra ela","Entrar em pânico","Nadar paralelo à praia","Mergulhar"],c:2},
+{q:"Quem tem prioridade na onda?",a:["Quem gritar primeiro","A prancha maior","Quem chegou depois","Quem está mais próximo da quebra"],c:3}
 ];
-let i=0,score=0,done=false;
-const st=parseInt(localStorage.getItem('asf-quiz-streak')||'0');
-document.getElementById('streak').textContent=st;
-function render(){
- document.getElementById('prog').textContent='Pergunta '+(i+1)+' de '+QS.length;
- document.getElementById('q').textContent=QS[i].q;
- const o=document.getElementById('opts');o.innerHTML='';
- QS[i].o.forEach((t,k)=>{const b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+k)+') '+t;b.onclick=()=>pick(b,k);o.appendChild(b)});
- document.getElementById('res').style.display='none';document.getElementById('next').style.display='none';
-}
-function pick(b,k){
- if(done)return;done=true;
- const ok=k===QS[i].a;const r=document.getElementById('res');
- document.querySelectorAll('.opt').forEach((el,j)=>{if(j===QS[i].a)el.classList.add('correct');else if(el===b)el.classList.add('wrong')});
- if(ok)score++;
- r.style.display='block';r.style.background=ok?'#27ae6018':'#e74c3c18';r.style.color=ok?'#27ae60':'#e74c3c';
- r.textContent=ok?'✅ Correto! +3 XP':'❌ Quase! A resposta certa está marcada.';
- const n=document.getElementById('next');n.style.display='block';
- n.textContent=i<QS.length-1?'Próxima ➜':'Ver resultado 🏁';
-}
-function nextQ(){
- done=false;
- if(i<QS.length-1){i++;render()}
- else{
-  const ns=st+1;localStorage.setItem('asf-quiz-streak',ns);
-  const xp=parseInt(localStorage.getItem('asf-quiz-xp')||'0')+score*3;localStorage.setItem('asf-quiz-xp',xp);
-  document.getElementById('q').textContent='🏄‍♀️ Você acertou '+score+' de '+QS.length+'!';
-  document.getElementById('opts').innerHTML='';document.getElementById('next').style.display='none';
-  const r=document.getElementById('res');r.style.display='block';r.style.background='#f4d03f22';r.style.color='#d4a017';
-  r.textContent='+'+(score*3)+' XP (total: '+xp+') • Streak: '+ns+' 🔥 Volte amanhã!';
-  document.getElementById('streak').textContent=ns;document.getElementById('prog').textContent='Quiz completo!';
- }
-}
-render();
+const day=Math.floor(Date.now()/864e5);
+const item=questions[day%questions.length];
+document.getElementById('question').textContent=item.q;
+const box=document.getElementById('answers');
+item.a.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.style.margin='.25rem';b.onclick=()=>{document.getElementById('result').textContent=i===item.c?'✅ Correto! +10 XP':'❌ Quase! Estude na rede ASF e tente amanhã.';};box.appendChild(b);});
 </script>
 </body>
 </html>
