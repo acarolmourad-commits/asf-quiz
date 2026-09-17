@@ -3,82 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASF Quiz — Quiz diário de surf</title>
-<meta name="description" content="Quiz diário de conhecimento do surf com XP e streak. Satélite do app ASF.">
+<title>ASF Quiz — ASF</title>
+<meta name="description" content="Quiz diário de conhecimento do surf com XP e streak">
 <style>
-:root{--rosa:#e63970;--areia:#fff5ee;--mar:#0b6e6e;--escuro:#12303a}
+:root{--rosa:#ff4d8d;--roxo:#7b2ff7;--areia:#fff5ec;--mar:#00c2cb}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:var(--areia);color:var(--escuro)}
-header{background:linear-gradient(135deg,#7b2ff7,#f107a3);color:#fff;padding:2.5rem 1rem;text-align:center}
-header h1{font-size:2.2rem}header p{opacity:.95;margin-top:.5rem}
-nav{background:var(--escuro);display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem;padding:.5rem;position:sticky;top:0;z-index:10}
-nav a{color:#fff;text-decoration:none;padding:.5rem .8rem;border-radius:.5rem;font-size:.9rem}
-nav a:hover,nav a.ativo{background:var(--rosa)}
-main{max-width:720px;margin:0 auto;padding:2rem 1rem}
-.card{background:#fff;border-radius:1rem;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.card h2{color:#7b2ff7;margin-bottom:.6rem}
-.placar{display:flex;gap:1rem;justify-content:center;margin-bottom:1rem}
-.placar div{background:var(--areia);border-radius:.75rem;padding:.8rem 1.2rem;text-align:center}
-.placar strong{display:block;font-size:1.4rem;color:var(--rosa)}
-button.op{display:block;width:100%;text-align:left;margin:.5rem 0;padding:.9rem 1rem;border:2px solid #eee;border-radius:.75rem;background:#fafafa;font-size:1rem;cursor:pointer}
-button.op:hover{border-color:var(--rosa)}
-button.op.certa{background:#d4f7dc;border-color:#2e9e5b}
-button.op.errada{background:#ffdde4;border-color:var(--rosa)}
-footer{background:var(--escuro);color:#cfe;padding:1.5rem;text-align:center;font-size:.85rem;margin-top:2rem}
-footer a{color:#ff9ec0}
-.cta{display:inline-block;background:var(--mar);color:#fff;padding:.7rem 1.4rem;border-radius:2rem;text-decoration:none;margin-top:.8rem}
+body{background:linear-gradient(160deg,#fff5ec,#ffe3f1 60%,#e0f7fa);min-height:100vh;color:#333}
+header{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;padding:2rem 1rem;text-align:center}
+header h1{font-size:2rem} header p{opacity:.9;margin-top:.4rem}
+nav{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;padding:.8rem;background:#fff;box-shadow:0 2px 8px #0001;position:sticky;top:0;z-index:10}
+nav a{background:var(--areia);border:1px solid #ffd3e6;color:#c2185b;padding:.3rem .7rem;border-radius:20px;font-size:.78rem;text-decoration:none}
+nav a:hover{background:var(--rosa);color:#fff}
+main{max-width:760px;margin:1.5rem auto;padding:0 1rem}
+.card{background:#fff;border-radius:16px;padding:1.4rem;box-shadow:0 4px 16px #7b2ff720;margin-bottom:1.2rem}
+.card h2{color:var(--roxo);margin-bottom:.6rem;font-size:1.2rem}
+button{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;border:none;padding:.6rem 1.2rem;border-radius:24px;font-size:1rem;cursor:pointer}
+button:hover{opacity:.85}
+input,select,textarea{padding:.5rem;border:1px solid #ddd;border-radius:10px;width:100%;margin:.3rem 0;font-size:1rem}
+.xp{position:fixed;bottom:1rem;right:1rem;background:#fff;border:2px solid var(--rosa);border-radius:24px;padding:.4rem 1rem;font-weight:bold;color:var(--roxo);box-shadow:0 4px 12px #0002}
+footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
 </style>
 </head>
 <body>
-<header><h1>❓ ASF Quiz</h1><p>Quiz diário de surf — ganhe XP e mantenha seu streak!</p></header>
-<nav>
-<a href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ App ASF</a>
-<a href="https://acarolmourad-commits.github.io/asf-praias/">🏖️ Praias</a>
-<a href="https://acarolmourad-commits.github.io/asf-previsao/">🌊 Previsão</a>
-<a href="https://acarolmourad-commits.github.io/asf-treino/">💪 Treino</a>
-<a href="https://acarolmourad-commits.github.io/asf-eventos/">📅 Eventos</a>
-<a href="https://acarolmourad-commits.github.io/asf-glossario/">📖 Glossário</a>
-<a href="https://acarolmourad-commits.github.io/asf-comunidade/">🌸 Comunidade</a>
-<a href="https://acarolmourad-commits.github.io/asf-seguranca/">🛟 Segurança</a>
-<a href="https://acarolmourad-commits.github.io/asf-equipamento/">🏄 Equipamento</a>
-<a class="ativo" href="https://acarolmourad-commits.github.io/asf-quiz/">❓ Quiz</a>
-<a href="https://acarolmourad-commits.github.io/asf-diario/">📝 Diário</a>
-<a href="https://acarolmourad-commits.github.io/asf-yoga/">🧘‍♀️ Yoga</a>
-<a href="https://acarolmourad-commits.github.io/asf-sos/">🆘 SOS</a>
-<a href="https://acarolmourad-commits.github.io/asf-eco/">🌱 Eco</a>
-<a href="https://acarolmourad-commits.github.io/asf-mapa/">🗺️ Mapa</a>
-<a href="https://acarolmourad-commits.github.io/asf-mare/">🌙 Maré</a>
-<a href="https://acarolmourad-commits.github.io/asf-nutricao/">🥗 Nutrição</a>
-</nav>
+<header><h1>🧠 ASF Quiz</h1><p>Quiz diário de conhecimento do surf com XP e streak</p></header>
+<nav><a href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ ASF App</a>
+<a href="https://acarolmourad-commits.github.io/asf-praias/">Praias</a>
+<a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsao</a>
+<a href="https://acarolmourad-commits.github.io/asf-treino/">Treino</a>
+<a href="https://acarolmourad-commits.github.io/asf-eventos/">Eventos</a>
+<a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossario</a>
+<a href="https://acarolmourad-commits.github.io/asf-seguranca/">Seguranca</a>
+<a href="https://acarolmourad-commits.github.io/asf-comunidade/">Comunidade</a>
+<a href="https://acarolmourad-commits.github.io/asf-equipamento/">Equipamento</a>
+<a href="https://acarolmourad-commits.github.io/asf-nutricao/">Nutricao</a>
+<a href="https://acarolmourad-commits.github.io/asf-historia/">Historia</a>
+<a href="https://acarolmourad-commits.github.io/asf-viagens/">Viagens</a>
+<a href="https://acarolmourad-commits.github.io/asf-bemestar/">Bemestar</a>
+<a href="https://acarolmourad-commits.github.io/asf-diario/">Diario</a>
+<a href="https://acarolmourad-commits.github.io/asf-eco/">Eco</a>
+<a href="https://acarolmourad-commits.github.io/asf-kids/">Kids</a>
+<a href="https://acarolmourad-commits.github.io/asf-mental/">Mental</a>
+<a href="https://acarolmourad-commits.github.io/asf-ranking/">Ranking</a>
+<a href="https://acarolmourad-commits.github.io/asf-respira/">Respira</a>
+<a href="https://acarolmourad-commits.github.io/asf-sos/">Sos</a>
+<a href="https://acarolmourad-commits.github.io/asf-volume/">Volume</a>
+<a href="https://acarolmourad-commits.github.io/asf-yoga/">Yoga</a></nav>
 <main>
-<div class="card"><div class="placar"><div><strong id="xp">0</strong>XP</div><div><strong id="streak">0</strong>🔥 Streak</div><div><strong id="acertos">0</strong>Acertos</div></div>
-<h2 id="pergunta">Carregando pergunta…</h2><div id="opcoes"></div><p id="feedback" style="margin-top:.8rem"></p></div>
-<div class="card"><h2>Aprenda mais 📚</h2><p>Errou alguma? Revisite o <a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossário</a>, o guia de <a href="https://acarolmourad-commits.github.io/asf-seguranca/">Segurança</a> e o de <a href="https://acarolmourad-commits.github.io/asf-equipamento/">Equipamento</a>.</p><a class="cta" href="https://acarolmourad-commits.github.io/asf-app/">Abrir o App ASF</a></div>
+<div class="card"><h2>Quiz do Surf</h2><p id="q"></p><div id="opts"></div><h3 id="fb" style="margin-top:.6rem"></h3><p>Streak: <b id="streak">0</b> 🔥</p></div>
+<div class="card"><h2>🌐 Ecossistema ASF</h2><p>Este app faz parte da constelação ASF — Associação de Surf Feminino. Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. App principal: <a href="https://acarolmourad-commits.github.io/asf-app/">ASF App</a>.</p></div>
 </main>
-<footer>Parte do ecossistema <a href="https://acarolmourad-commits.github.io/asf-app/">ASF — Associação de Surf Feminino</a> · Publicado via GitHub Pages</footer>
+<div class="xp">⭐ XP: <span id="xp">0</span></div>
+<footer>ASF — Associação de Surf Feminino · Feito com 🌊 e 💜 · <a href="https://acarolmourad-commits.github.io/asf-app/">asf-app</a></footer>
 <script>
-const perguntas=[
-{q:"O que é 'drop' no surf?",o:["Cair da prancha","Descer a parede da onda pela primeira vez","Virar a prancha na remada"],c:1,l:"asf-glossario"},
-{q:"Qual prancha é ideal para iniciantes?",o:["Shortboard 5'10","Longboard 9'0","Gun 7'6"],c:1,l:"asf-equipamento"},
-{q:"Quem tem prioridade na onda?",o:["Quem grita primeiro","Quem está mais perto do pico/inside","Quem chegou por último"],c:1,l:"asf-seguranca"},
-{q:"O que significa 'swell'?",o:["Corrente de retorno","Ondulação gerada por ventos distantes","Maré cheia"],c:1,l:"asf-previsao"}
-];
-let i=0,xp=+(localStorage.getItem('asfquiz_xp')||0),st=+(localStorage.getItem('asfquiz_streak')||0),ac=0;
-const dia=new Date().toDateString();
-if(localStorage.getItem('asfquiz_dia')===dia){i=perguntas.length;}
-function render(){
- document.getElementById('xp').textContent=xp;document.getElementById('streak').textContent=st;document.getElementById('acertos').textContent=ac;
- if(i>=perguntas.length){document.getElementById('pergunta').textContent='Quiz de hoje concluído! Volte amanhã 🌊';document.getElementById('opcoes').innerHTML='';return;}
- const p=perguntas[i];document.getElementById('pergunta').textContent=(i+1)+'. '+p.q;
- document.getElementById('opcoes').innerHTML='';
- p.o.forEach((t,j)=>{const b=document.createElement('button');b.className='op';b.textContent=t;
-  b.onclick=()=>{const certa=j===p.c;b.classList.add(certa?'certa':'errada');
-   if(certa){xp+=10;ac++;st++;document.getElementById('feedback').innerHTML='✅ Correto! +10 XP';}else{st=0;document.getElementById('feedback').innerHTML='❌ Quase! Veja mais em <a href="https://acarolmourad-commits.github.io/'+p.l+'/">'+p.l.replace('asf-','')+'</a>';}
-   localStorage.setItem('asfquiz_xp',xp);localStorage.setItem('asfquiz_streak',st);
-   setTimeout(()=>{i++;if(i>=perguntas.length)localStorage.setItem('asfquiz_dia',dia);render();},1200);};
-  document.getElementById('opcoes').appendChild(b);});
-}
-render();
+const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
+function addXP(n){localStorage.setItem('asf_xp',XP()+n);document.getElementById('xp').textContent=XP();}
+document.getElementById('xp').textContent=XP();
+const QS=[{q:'O que é o "lineup"?',o:['Área onde surfistas esperam ondas','Tipo de prancha','Manobra aérea'],a:0},{q:'O que significa "swell"?',o:['Vento forte','Série de ondas vinda do oceano','Corrente de retorno'],a:1},{q:'Quem tem prioridade na onda?',o:['Quem grita mais','Quem está mais perto do pico','Quem tem prancha maior'],a:1},{q:'O que é "duck dive"?',o:['Mergulho por baixo da onda com a prancha','Queda feia','Tipo de remada'],a:0},{q:'Corrente de retorno: o que fazer?',o:['Nadar contra ela','Entrar em pânico','Nadar paralela à praia'],a:2}];let i=0,st=parseInt(localStorage.getItem('asf_streak')||'0');document.getElementById('streak').textContent=st;function show(){if(i>=QS.length){document.getElementById('q').textContent='Quiz completo! 🏆';document.getElementById('opts').innerHTML='';return;}const x=QS[i];document.getElementById('q').textContent=x.q;document.getElementById('opts').innerHTML=x.o.map((o,j)=>`<button style="display:block;width:100%;margin:.3rem 0;background:#fff;color:var(--roxo);border:2px solid var(--roxo)" onclick="ans(${j})">${o}</button>`).join('');}function ans(j){if(j===QS[i].a){st++;localStorage.setItem('asf_streak',st);document.getElementById('streak').textContent=st;document.getElementById('fb').textContent='✅ Certo! +10 XP';addXP(10);}else{document.getElementById('fb').textContent='❌ Quase! A resposta certa era: '+QS[i].o[QS[i].a];st=0;localStorage.setItem('asf_streak',0);document.getElementById('streak').textContent=0;}i++;setTimeout(()=>{document.getElementById('fb').textContent='';show();},1500);}show();
+</script>
+
+<!-- ASF Ecossistema Nav v2 (rede completa, 21 sites) -->
+<script>
+(function(){
+  function injectNav(){
+    if(document.querySelector('.asf-sat-nav'))return;
+    var old=document.querySelector('.asf-rede-nav');if(old)old.remove();
+    var sites=[["asf-app","\u{1F30A} App"],["asf-praias","\u{1F3D6}\uFE0F Praias"],["asf-previsao","\u{1F4C8} Previs\u00E3o"],["asf-treino","\u{1F3CB}\uFE0F Treino"],["asf-eventos","\u{1F4C5} Eventos"],["asf-glossario","\u{1F4D6} Gloss\u00E1rio"],["asf-comunidade","\u{1F4AC} Comunidade"],["asf-seguranca","\u{1F6FA} Seguran\u00E7a"],["asf-equipamento","\u{1F3C4}\u200D\u2640\uFE0F Equipamento"],["asf-quiz","\u{1F9E0} Quiz"],["asf-nutricao","\u{1F957} Nutri\u00E7\u00E3o"],["asf-viagens","\u{2708}\uFE0F Viagens"],["asf-historia","\u{1F3C6} Hist\u00F3ria"],["asf-bemestar","\u{1F9D8}\u200D\u2640\uFE0F Bem-estar"],["asf-ranking","\u{1F947} Ranking"],["asf-diario","\u{1F4D3} Di\u00E1rio"],["asf-respira","\u{1FAC1} Respira"],["asf-volume","\u{1F4D0} Volume"],["asf-yoga","\u{1F9D8} Yoga"],["asf-sos","\u{1F198} SOS"],["asf-eco","\u{1F331} Eco"]];
+    var nav=document.createElement('nav');
+    nav.className='asf-sat-nav';
+    nav.setAttribute('aria-label','Ecossistema ASF');
+    nav.style.cssText='background:linear-gradient(135deg,#0ea5e9,#6366f1);padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;position:sticky;top:0;z-index:10000;';
+    sites.forEach(function(s){
+      var a=document.createElement('a');
+      a.href='https://acarolmourad-commits.github.io/'+s[0]+'/';
+      a.textContent=s[1];
+      a.style.cssText='color:#e0f2fe;text-decoration:none;font-weight:600;font-size:.75rem;padding:.28rem .55rem;border-radius:999px;background:rgba(255,255,255,.12);font-family:inherit;';
+      a.onmouseover=function(){a.style.background='rgba(255,255,255,.35)';};
+      a.onmouseout=function(){a.style.background='rgba(255,255,255,.12)';};
+      nav.appendChild(a);
+    });
+    document.body.insertBefore(nav,document.body.firstChild);
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',injectNav);}else{injectNav();}
+})();
 </script>
 </body>
 </html>
