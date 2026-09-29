@@ -89,7 +89,87 @@ footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
 const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
 function addXP(n){localStorage.setItem('asf_xp',XP()+n);document.getElementById('xp').textContent=XP();}
 document.getElementById('xp').textContent=XP();
-const QS=[{q:'O que é o "lineup"?',o:['Área onde surfistas esperam ondas','Tipo de prancha','Manobra aérea'],a:0},{q:'O que significa "swell"?',o:['Vento forte','Série de ondas vinda do oceano','Corrente de retorno'],a:1},{q:'Quem tem prioridade na onda?',o:['Quem grita mais','Quem está mais perto do pico','Quem tem prancha maior'],a:1},{q:'O que é "duck dive"?',o:['Mergulho por baixo da onda com a prancha','Queda feia','Tipo de remada'],a:0},{q:'Corrente de retorno: o que fazer?',o:['Nadar contra ela','Entrar em pânico','Nadar paralela à praia'],a:2}];let i=0,st=parseInt(localStorage.getItem('asf_streak')||'0');document.getElementById('streak').textContent=st;function show(){if(i>=QS.length){try{var qd=JSON.parse(localStorage.getItem('quizzes-done')||'[]');qd.push({date:new Date().toISOString(),app:'asf-quiz'});localStorage.setItem('quizzes-done',JSON.stringify(qd));document.getElementById('q').textContent='Quiz completo! 🏆 Conquista registrada no ASF App — Estudiosa: '+qd.length+'/3 quizzes';}catch(e){document.getElementById('q').textContent='Quiz completo! 🏆';}document.getElementById('opts').innerHTML='';return;}const x=QS[i];document.getElementById('q').textContent=x.q;document.getElementById('opts').innerHTML=x.o.map((o,j)=>`<button style="display:block;width:100%;margin:.3rem 0;background:#fff;color:var(--roxo);border:2px solid var(--roxo)" onclick="ans(${j})">${o}</button>`).join('');}function ans(j){if(j===QS[i].a){st++;localStorage.setItem('asf_streak',st);document.getElementById('streak').textContent=st;document.getElementById('fb').textContent='✅ Certo! +10 XP';addXP(10);}else{document.getElementById('fb').textContent='❌ Quase! A resposta certa era: '+QS[i].o[QS[i].a];st=0;localStorage.setItem('asf_streak',0);document.getElementById('streak').textContent=0;}i++;setTimeout(()=>{document.getElementById('fb').textContent='';show();},1500);}show();
+
+// ===== Níveis progressivos: Marolinha → Quebra-coco → Local → Tsunami =====
+const NIVEIS=[
+{id:'marolinha',nome:'🌊 Marolinha',desc:'Fundamentos do surf',qs:[
+{q:'O que é o "lineup"?',o:['Área onde surfistas esperam ondas','Tipo de prancha','Manobra aérea'],a:0},
+{q:'O que significa "swell"?',o:['Vento forte','Série de ondas vinda do oceano','Corrente de retorno'],a:1},
+{q:'Quem tem prioridade na onda?',o:['Quem grita mais','Quem está mais perto do pico','Quem tem prancha maior'],a:1},
+{q:'O que é "duck dive"?',o:['Mergulho por baixo da onda com a prancha','Queda feia','Tipo de remada'],a:0},
+{q:'Corrente de retorno: o que fazer?',o:['Nadar contra ela','Entrar em pânico','Nadar paralela à praia'],a:2}]},
+{id:'quebracoco',nome:'🏄‍♀️ Quebra-coco',desc:'Equipamento e técnicas',qs:[
+{q:'Para que serve o leash (cordinha)?',o:['Enfeitar a prancha','Prender a prancha ao tornozelo por segurança','Medir a onda'],a:1},
+{q:'O que é a "remada" no surf?',o:['Grito de guerra','Movimento dos braços para entrar na onda','Tipo de prancha'],a:1},
+{q:'Parafina na prancha serve para:',o:['Dar brilho','Proteger do sol','Dar aderência aos pés'],a:2},
+{q:'O que é "drop"?',o:['Derrubar outra surfista','Descer a parede da onda no início','Soltar a prancha'],a:1},
+{q:'Prancha ideal para iniciantes:',o:['Shortboard fina','Longboard ou funboard (maiores e estáveis)','Prancha de bodyboard'],a:1}]},
+{id:'local',nome:'🏄 Local',desc:'Regras e segurança no pico',qs:[
+{q:'Ao remar de volta ao lineup com uma surfista na onda, você deve:',o:['Remar na direção dela','Remar para a espuma (parte quebrada), cedendo a parede','Parar e esperar'],a:1},
+{q:'O que significa "furar" uma onda (drop in)?',o:['Cair da prancha','Pegar a mesma onda na frente de quem tem prioridade','Fazer um aéreo'],a:1},
+{q:'Antes de entrar no mar, o ideal é:',o:['Entrar correndo','Observar as condições e conhecer seus limites','Ir direto ao pico'],a:1},
+{q:'Bandeira vermelha dupla na praia significa:',o:['Mar bom para surf','Mar proibido/perigoso — não entre','Competição rolando'],a:1},
+{q:'Se cair da prancha, proteja:',o:['Os pés','A cabeça com os braços','A prancha'],a:1}]},
+{id:'tsunami',nome:'🌪️ Tsunami',desc:'História e cultura do surf feminino',qs:[
+{q:'Maya Gabeira ficou famosa por:',o:['Surfar ondas gigantes em Nazaré','Inventar o bodyboard','Ser nadadora olímpica'],a:0},
+{q:'O surf feminino estreou nas Olimpíadas em:',o:['Sydney 2000','Tóquio 2020 (realizados em 2021)','Atenas 2004'],a:1},
+{q:'Primeira brasileira campeã mundial de surf (2014):',o:['Silvana Lima','Maya Gabeira','Carissa Moore'],a:0},
+{q:'Tati Weston-Webb representa o Brasil e tem origem em:',o:['Havaí/EUA','Austrália','França'],a:0},
+{q:'O "women\'s big wave" ganhou recorde mundial com Maya Gabeira surfando uma onda de aprox.:',o:['5 metros','22 metros em Nazaré','10 metros'],a:1}]}
+];
+
+const PASS=0.8; // 80% para desbloquear o próximo nível
+const prog=JSON.parse(localStorage.getItem('asf_quiz_niveis')||'{}'); // {nivelId: melhorPlacar 0-5}
+let st=parseInt(localStorage.getItem('asf_streak')||'0');
+document.getElementById('streak').textContent=st;
+let cur=null,i=0,acertos=0;
+
+function desbloqueado(n){return n===0||(prog[NIVEIS[n-1].id]||0)>=Math.ceil(NIVEIS[n-1].qs.length*PASS);}
+function bestPct(n){const b=prog[NIVEIS[n].id];return b==null?null:Math.round(b/NIVEIS[n].qs.length*100);}
+
+function menu(){
+  cur=null;
+  document.getElementById('q').innerHTML='Escolha seu nível 🌊<br><small style="font-weight:normal">Acerte '+Math.round(PASS*100)+'% para desbloquear o próximo!</small>';
+  document.getElementById('fb').textContent='';
+  document.getElementById('opts').innerHTML=NIVEIS.map((lv,n)=>{
+    const ok=desbloqueado(n),bp=bestPct(n);
+    const badge=bp==null?'':(bp>=PASS*100?' ✅ '+bp+'%':' · '+bp+'%');
+    if(ok)return `<button style="display:block;width:100%;margin:.3rem 0" onclick="start(${n})">${lv.nome} <small>· ${lv.desc}</small>${badge}</button>`;
+    return `<button style="display:block;width:100%;margin:.3rem 0;background:#eee;color:#999;border:2px solid #ddd;cursor:not-allowed" disabled>🔒 ${lv.nome} <small>· complete o nível anterior</small></button>`;
+  }).join('');
+}
+
+function start(n){cur=n;i=0;acertos=0;show();}
+
+function show(){
+  const lv=NIVEIS[cur];
+  if(i>=lv.qs.length){fim();return;}
+  const x=lv.qs[i];
+  document.getElementById('q').innerHTML=lv.nome+' · Pergunta '+(i+1)+'/'+lv.qs.length+'<br><br>'+x.q;
+  document.getElementById('opts').innerHTML=x.o.map((o,j)=>`<button style="display:block;width:100%;margin:.3rem 0;background:#fff;color:var(--roxo);border:2px solid var(--roxo)" onclick="ans(${j})">${o}</button>`).join('');
+}
+
+function ans(j){
+  const lv=NIVEIS[cur];
+  if(j===lv.qs[i].a){acertos++;st++;localStorage.setItem('asf_streak',st);document.getElementById('streak').textContent=st;document.getElementById('fb').textContent='✅ Certo! +10 XP';addXP(10);}
+  else{document.getElementById('fb').textContent='❌ Quase! A resposta certa era: '+lv.qs[i].o[lv.qs[i].a];st=0;localStorage.setItem('asf_streak',0);document.getElementById('streak').textContent=0;}
+  i++;setTimeout(()=>{document.getElementById('fb').textContent='';show();},1500);
+}
+
+function fim(){
+  const lv=NIVEIS[cur],tot=lv.qs.length,pct=Math.round(acertos/tot*100);
+  if(acertos>(prog[lv.id]||0)){prog[lv.id]=acertos;localStorage.setItem('asf_quiz_niveis',JSON.stringify(prog));}
+  try{var qd=JSON.parse(localStorage.getItem('quizzes-done')||'[]');qd.push({date:new Date().toISOString(),app:'asf-quiz',nivel:lv.id,acertos:acertos,total:tot});localStorage.setItem('quizzes-done',JSON.stringify(qd));}catch(e){}
+  const passou=pct>=PASS*100,ultimo=cur===NIVEIS.length-1;
+  let msg=lv.nome+' completo: '+acertos+'/'+tot+' ('+pct+'%)<br><br>';
+  if(passou&&ultimo)msg+='👑 TSUNAMI COMPLETO! Você dominou todos os níveis do ASF Quiz!';
+  else if(passou)msg+='🎉 Nível desbloqueado: '+NIVEIS[cur+1].nome+'!';
+  else msg+='💪 Faltou pouco! Acerte '+Math.ceil(tot*PASS)+'/'+tot+' para desbloquear o próximo nível.';
+  document.getElementById('q').innerHTML=msg;
+  document.getElementById('opts').innerHTML='<button onclick="menu()">Ver níveis 🌊</button>'+(passou?' <button onclick="start('+(ultimo?cur:cur+1)+')">'+(ultimo?'Jogar de novo':'Próximo nível ▶')+'</button>':' <button onclick="start('+cur+')">Tentar de novo 🔄</button>');
+}
+
+menu();
 </script>
 
 <!-- ASF Ecossistema Nav v2 (rede completa, 21 sites) -->
