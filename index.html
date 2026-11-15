@@ -69,23 +69,84 @@ footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
 <meta name="twitter:image" content="https://acarolmourad-commits.github.io/thumbnails/asf-quiz.jpg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1643806355443576" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://acarolmourad-commits.github.io/asf-app/asf-site-redesign.css">
+
+<style id="asf-quiz-layout">
+:root{--ink:#17324d;--muted:#64748b;--ocean:#087e9b;--deep:#4930a8;--line:#e6eaf2;--soft:#f6f8fc}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 15% 0%,#ffe5f0 0,transparent 38%),linear-gradient(160deg,#f7f8ff 0%,#eefaff 55%,#fff8f3 100%);color:var(--ink)}
+.quiz-hero{padding:clamp(2.4rem,7vw,5rem) 1rem;background:linear-gradient(120deg,#f14f91 0%,#8651df 55%,#0c9cb3 100%);position:relative;overflow:hidden}
+.hero-inner{max-width:980px;margin:auto;position:relative;z-index:1}
+.quiz-hero h1{font-size:clamp(2.2rem,6vw,3.8rem);letter-spacing:-.04em;margin:.45rem 0}
+.quiz-hero p{font-size:clamp(1rem,2vw,1.18rem);max-width:600px;line-height:1.6}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;font-weight:800;color:#8a4ca9}
+.quiz-hero .eyebrow{color:#fff;opacity:.9}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.3rem}
+.hero-tags span,.level-pill{border:1px solid #ffffff66;background:#ffffff20;border-radius:999px;padding:.42rem .75rem;font-size:.8rem;font-weight:700;color:inherit}
+.quiz-layout{max-width:980px;margin:2rem auto 3rem;padding:0 1rem}
+.quiz-intro{margin:0 0 1.2rem}
+.quiz-intro h2{font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.03em;margin:.3rem 0;color:#213b5a}
+.quiz-intro p:last-child{color:var(--muted);line-height:1.65;max-width:680px}
+.quiz-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin:1.2rem 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1rem;display:grid;grid-template-columns:auto 1fr;column-gap:.65rem;align-items:center;box-shadow:0 6px 20px #273c5a0b}
+.stat-icon{grid-row:span 2;font-size:1.45rem}.stat-label{font-size:.75rem;color:var(--muted)}.stat strong{font-size:1.15rem;color:#35227c}
+.card{border:1px solid #e7eaf3;border-radius:22px;padding:clamp(1.1rem,3vw,2rem);box-shadow:0 12px 36px #263c5a12;margin-bottom:1rem}
+.quiz-card{padding:clamp(1.2rem,4vw,2.2rem)}
+.quiz-card-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.1rem}
+.quiz-card-head h2{font-size:1.55rem;color:#273c65;margin:.25rem 0 0}
+.level-pill{color:#4930a8;background:#f2edff;border-color:#e4d9ff;white-space:nowrap}
+.quiz-progress{height:8px;background:#edf0f6;border-radius:99px;overflow:hidden;margin:0 0 1.3rem}
+.quiz-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ff4d8d,#7b2ff7,#00a8b7);border-radius:inherit;transition:width .25s ease}
+#q{line-height:1.55;margin-bottom:1rem}
+#q:has(.question-text){display:flex;flex-direction:column;gap:.45rem}
+.question-count{font-size:.8rem;color:#7752b8;font-weight:800}
+.question-text{font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:750;color:#203956}
+.level-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.level-option{width:100%;min-height:116px;padding:1rem!important;border:1px solid #e1e6f0!important;border-radius:16px!important;background:#fff!important;color:#273c65!important;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:.4rem;box-shadow:0 4px 14px #2039560b;transition:transform .18s,border-color .18s,box-shadow .18s}
+.level-option:not(:disabled):hover{transform:translateY(-2px);border-color:#a78bfa!important;box-shadow:0 10px 24px #4c36a51c}
+.level-name{font-size:1.05rem;font-weight:800}.level-desc{font-size:.83rem;color:var(--muted);font-weight:500}.level-best{font-size:.75rem;color:#8050b8;font-weight:800;margin-top:auto}
+.level-option.locked{background:#f5f6fa!important;color:#9aa3b2!important;box-shadow:none;opacity:.85}
+.answer-list{display:grid;gap:.7rem}
+.answer-option{display:flex;align-items:center;gap:.8rem;width:100%;text-align:left;padding:.85rem 1rem!important;border:1.5px solid #e0e5f0!important;border-radius:14px!important;background:#fff!important;color:#243d5a!important;box-shadow:0 3px 12px #20395609;line-height:1.4}
+.answer-option:hover{border-color:#9b7bea!important;background:#faf8ff!important}
+.answer-letter{width:30px;height:30px;flex:0 0 30px;border-radius:10px;background:#f1ecff;color:#633ab2;display:grid;place-items:center;font-weight:800}
+#fb{font-size:.98rem;line-height:1.5;color:#3d3279;min-height:1.5rem;margin-top:1rem!important}
+.result-kicker,.result-percent{display:block;font-size:.8rem;color:var(--muted);font-weight:700}
+.result-score{display:block;font-size:clamp(2.5rem,8vw,4rem);font-weight:900;color:#6c42c0;line-height:1.1;margin:.4rem 0}
+.result-message{margin-top:.8rem;line-height:1.6}
+.result-actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.action-primary,.action-secondary{border-radius:999px!important;padding:.75rem 1.2rem!important}
+.action-primary{background:linear-gradient(100deg,#f14f91,#7944d1)!important}
+.action-secondary{background:#fff!important;color:#5735a1!important;border:1px solid #d9d0ef!important}
+.info-card h2{color:#4930a8;margin-bottom:.8rem}
+.info-card p,.info-card li{color:#53657a;line-height:1.75}
+.info-card a{color:#6740b1;font-weight:700}
+#faq details{padding:.7rem 0;border-bottom:1px solid var(--line)}
+#faq summary{color:#273c65;line-height:1.5}
+.asf-sat-nav{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;overscroll-behavior-x:contain;white-space:nowrap;scrollbar-width:thin}
+.asf-sat-nav a{flex:0 0 auto}
+footer{color:#66758a;padding:2rem 1rem}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #00a8b7!important;outline-offset:3px}
+@media(max-width:620px){.quiz-layout{margin:1.2rem auto 2.5rem}.quiz-stats{gap:.5rem}.stat{padding:.7rem .55rem}.level-grid{grid-template-columns:1fr}.level-option{min-height:90px}.quiz-card-head{align-items:flex-start;flex-direction:column}.level-pill{font-size:.72rem}.hero-tags span{font-size:.72rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.quiz-progress span,.level-option{transition:none}}
+</style>
 </head>
 <body>
-<header><h1>🧠 ASF Quiz</h1><p>Quiz diário de conhecimento do surf com XP e streak</p></header>
+<header class="quiz-hero"><div class="hero-inner"><span class="eyebrow">APRENDA · JOGUE · EVOLUA</span><h1>🧠 ASF Quiz</h1><p>Seu desafio diário para aprender mais sobre o universo do surf feminino.</p><div class="hero-tags"><span>🌊 4 níveis</span><span>⭐ XP compartilhado</span><span>🔥 sequência de acertos</span></div></div></header>
 
-<main>
-<div class="card"><h2>Quiz do Surf</h2><p id="q"></p><div id="opts"></div><h3 id="fb" style="margin-top:.6rem"></h3><p>Streak: <b id="streak">0</b> 🔥</p></div>
-<div class="card"><h2>📖 Sobre o ASF Quiz</h2><p>O ASF Quiz é o quiz diário de conhecimento do surf da <strong>ASF — Associação de Surf Feminino</strong>. Responda perguntas sobre lineup, swell, prioridade na onda, duck dive e segurança no mar, ganhe <strong>XP</strong> e mantenha seu <strong>streak</strong> 🔥 de acertos. Ideal para iniciantes que estão aprendendo os fundamentos do surf e para manas que querem testar o que já sabem!</p></div>
-<div class="card"><h2>🎯 Como funciona</h2><ul style="padding-left:1.2rem;line-height:1.8"><li>Responda as perguntas do quiz do dia</li><li>Cada acerto vale <strong>+10 XP</strong>, acumulado no seu perfil ASF</li><li>Errou? Sem problema: a resposta certa aparece para você aprender</li><li>Acertos seguidos aumentam seu streak 🔥</li><li>Seu XP vale no ecossistema inteiro — confira o <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a></li></ul></div>
-<div class="card" id="faq"><h2>❓ Perguntas Frequentes (FAQ)</h2>
+<main class="quiz-layout">
+<section class="quiz-intro"><p class="eyebrow">DESAFIO ASF</p><h2>Quanto você sabe sobre surf?</h2><p>Escolha um nível, responda no seu ritmo e desbloqueie novos desafios. Cada pergunta é uma oportunidade de aprender.</p></section>
+<div class="quiz-stats"><div class="stat"><span class="stat-icon">⭐</span><span class="stat-label">Seu XP</span><strong><span id="xp">0</span></strong></div><div class="stat"><span class="stat-icon">🔥</span><span class="stat-label">Streak</span><strong><span id="streak">0</span></strong></div><div class="stat"><span class="stat-icon">🏄‍♀️</span><span class="stat-label">Níveis</span><strong>4</strong></div></div>
+<section class="card quiz-card" aria-labelledby="quiz-heading"><div class="quiz-card-head"><div><span class="eyebrow">SUA JORNADA</span><h2 id="quiz-heading">Quiz do Surf</h2></div><span class="level-pill">🌊 ASF Quiz</span></div><div class="quiz-progress" aria-hidden="true"><span id="quizProgress"></span></div><p id="q" aria-live="polite"></p><div id="opts"></div><h3 id="fb" role="status" aria-live="polite"></h3></section>
+<section class="card info-card"><h2>📖 Sobre o ASF Quiz</h2><p>O ASF Quiz é o quiz diário de conhecimento do surf da <strong>ASF — Associação de Surf Feminino</strong>. Responda perguntas sobre lineup, swell, prioridade na onda, duck dive e segurança no mar, ganhe <strong>XP</strong> e mantenha seu <strong>streak</strong> 🔥 de acertos. Ideal para iniciantes que estão aprendendo os fundamentos do surf e para manas que querem testar o que já sabem!</p></section>
+<section class="card info-card"><h2>🎯 Como funciona</h2><ul style="padding-left:1.2rem;line-height:1.8"><li>Responda as perguntas do quiz do dia</li><li>Cada acerto vale <strong>+10 XP</strong>, acumulado no seu perfil ASF</li><li>Errou? Sem problema: a resposta certa aparece para você aprender</li><li>Acertos seguidos aumentam seu streak 🔥</li><li>Seu XP vale no ecossistema inteiro — confira o <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a></li></ul></section>
+<section class="card info-card" id="faq"><h2>❓ Perguntas Frequentes (FAQ)</h2>
 <details style="margin:.5rem 0"><summary style="font-weight:600;cursor:pointer">O que é o lineup no surf?</summary><p style="margin-top:.3rem">O lineup é a área onde os surfistas esperam as ondas, além da zona de arrebentação.</p></details>
 <details style="margin:.5rem 0"><summary style="font-weight:600;cursor:pointer">O que significa swell?</summary><p style="margin-top:.3rem">Swell é uma série de ondas vinda do oceano, gerada por ventos distantes.</p></details>
 <details style="margin:.5rem 0"><summary style="font-weight:600;cursor:pointer">Quem tem prioridade na onda?</summary><p style="margin-top:.3rem">Tem prioridade quem está mais perto do pico da onda.</p></details>
 <details style="margin:.5rem 0"><summary style="font-weight:600;cursor:pointer">O que fazer ao ser pega por uma corrente de retorno?</summary><p style="margin-top:.3rem">Nade paralela à praia até sair da corrente, e só então retorne à areia.</p></details>
-</div>
-<div class="card"><h2>🌐 Ecossistema ASF</h2><p>Este app faz parte da constelação ASF — Associação de Surf Feminino. Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. App principal: <a href="https://acarolmourad-commits.github.io/asf-app/">ASF App</a>.</p></div>
+</section>
+<section class="card info-card"><h2>🌐 Ecossistema ASF</h2><p>Este app faz parte da constelação ASF — Associação de Surf Feminino. Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. App principal: <a href="https://acarolmourad-commits.github.io/asf-app/">ASF App</a>.</p></section>
 </main>
-<div class="xp">⭐ XP: <span id="xp">0</span></div>
 <footer>ASF — Associação de Surf Feminino · Feito com 🌊 e 💜 · <a href="https://acarolmourad-commits.github.io/asf-app/">asf-app</a></footer>
 <script>
 const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
@@ -133,11 +194,13 @@ function menu(){
   cur=null;
   document.getElementById('q').innerHTML='Escolha seu nível 🌊<br><small style="font-weight:normal">Acerte '+Math.round(PASS*100)+'% para desbloquear o próximo!</small>';
   document.getElementById('fb').textContent='';
+  document.getElementById('opts').className="level-grid";
+  document.getElementById('quizProgress').style.width="0%";
   document.getElementById('opts').innerHTML=NIVEIS.map((lv,n)=>{
     const ok=desbloqueado(n),bp=bestPct(n);
     const badge=bp==null?'':(bp>=PASS*100?' ✅ '+bp+'%':' · '+bp+'%');
-    if(ok)return `<button style="display:block;width:100%;margin:.3rem 0" onclick="start(${n})">${lv.nome} <small>· ${lv.desc}</small>${badge}</button>`;
-    return `<button style="display:block;width:100%;margin:.3rem 0;background:#eee;color:#999;border:2px solid #ddd;cursor:not-allowed" disabled>🔒 ${lv.nome} <small>· complete o nível anterior</small></button>`;
+    if(ok)return `<button class="level-option" onclick="start(${n})"><span class="level-name">${lv.nome}</span><span class="level-desc">${lv.desc}</span><span class="level-best">${badge||"Começar agora →"}</span></button>`;
+    return `<button class="level-option locked" disabled><span class="level-name">🔒 ${lv.nome}</span><span class="level-desc">Complete o nível anterior para desbloquear</span></button>`;
   }).join('');
 }
 
@@ -147,13 +210,15 @@ function show(){
   const lv=NIVEIS[cur];
   if(i>=lv.qs.length){fim();return;}
   const x=lv.qs[i];
-  document.getElementById('q').innerHTML=lv.nome+' · Pergunta '+(i+1)+'/'+lv.qs.length+'<br><br>'+x.q;
-  document.getElementById('opts').innerHTML=x.o.map((o,j)=>`<button style="display:block;width:100%;margin:.3rem 0;background:#fff;color:var(--roxo);border:2px solid var(--roxo)" onclick="ans(${j})">${o}</button>`).join('');
+  document.getElementById('quizProgress').style.width=(i/lv.qs.length*100)+"%";
+  document.getElementById('opts').className="answer-list";
+  document.getElementById('q').innerHTML='<span class="question-count">'+lv.nome+' · Pergunta '+(i+1)+' de '+lv.qs.length+'</span><span class="question-text">'+x.q+'</span>';
+  document.getElementById('opts').innerHTML=x.o.map((o,j)=>`<button class="answer-option" onclick="ans(${j})"><span class="answer-letter">${String.fromCharCode(65+j)}</span><span>${o}</span></button>`).join('');
 }
 
 function ans(j){
   const lv=NIVEIS[cur];
-  if(j===lv.qs[i].a){acertos++;st++;localStorage.setItem('asf_streak',st);document.getElementById('streak').textContent=st;document.getElementById('fb').textContent='✅ Certo! +10 XP';addXP(10);}
+  if(j===lv.qs[i].a){acertos++;st++;localStorage.setItem('asf_streak',st);document.getElementById('streak').textContent=st;document.getElementById('fb').textContent='✅ Muito bem! +10 XP';addXP(10);}
   else{document.getElementById('fb').textContent='❌ Quase! A resposta certa era: '+lv.qs[i].o[lv.qs[i].a];st=0;localStorage.setItem('asf_streak',0);document.getElementById('streak').textContent=0;}
   i++;setTimeout(()=>{document.getElementById('fb').textContent='';show();},1500);
 }
@@ -167,8 +232,10 @@ function fim(){
   if(passou&&ultimo)msg+='👑 TSUNAMI COMPLETO! Você dominou todos os níveis do ASF Quiz!';
   else if(passou)msg+='🎉 Nível desbloqueado: '+NIVEIS[cur+1].nome+'!';
   else msg+='💪 Faltou pouco! Acerte '+Math.ceil(tot*PASS)+'/'+tot+' para desbloquear o próximo nível.';
-  document.getElementById('q').innerHTML=msg;
-  document.getElementById('opts').innerHTML='<button onclick="menu()">Ver níveis 🌊</button>'+(passou?' <button onclick="start('+(ultimo?cur:cur+1)+')">'+(ultimo?'Jogar de novo':'Próximo nível ▶')+'</button>':' <button onclick="start('+cur+')">Tentar de novo 🔄</button>');
+  document.getElementById('quizProgress').style.width="100%";
+  document.getElementById('opts').className="result-actions";
+  document.getElementById('q').innerHTML='<span class="result-kicker">RESULTADO DO NÍVEL</span><span class="result-score">'+acertos+' / '+tot+'</span><span class="result-percent">'+pct+'% de acertos</span><p class="result-message">'+msg+'</p>';
+  document.getElementById('opts').innerHTML='<button class="action-secondary" onclick="menu()">Ver níveis 🌊</button>'+(passou?' <button class="action-primary" onclick="start('+(ultimo?cur:cur+1)+')">'+(ultimo?'Jogar de novo':'Próximo nível ▶')+'</button>':' <button class="action-primary" onclick="start('+cur+')">Tentar de novo 🔄</button>');
 }
 
 menu();
